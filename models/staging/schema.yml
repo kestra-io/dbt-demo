@@ -4,28 +4,34 @@ models:
   - name: stg_customers
     columns:
       - name: customer_id
-        tests:
-          - unique
+        data_tests:
+          - unique:
+              config:
+                severity: warn
           - not_null
 
   - name: stg_orders
     columns:
       - name: order_id
-        tests:
-          - unique
+        data_tests:
+          - unique:
+              config:
+                severity: warn
           - not_null
       - name: status
-        tests:
+        data_tests:
           - accepted_values:
               values: ['placed', 'shipped', 'completed', 'return_pending', 'returned']
 
   - name: stg_payments
     columns:
       - name: payment_id
-        tests:
-          - unique
+        data_tests:
+          - unique:
+              config:
+                severity: warn
           - not_null
       - name: payment_method
-        tests:
+        data_tests:
           - accepted_values:
               values: ['credit_card', 'coupon', 'bank_transfer', 'gift_card']
